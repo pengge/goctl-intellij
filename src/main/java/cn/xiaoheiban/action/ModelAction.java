@@ -7,6 +7,7 @@ import cn.xiaoheiban.ui.FileChooseDialog;
 import cn.xiaoheiban.util.Exec;
 import cn.xiaoheiban.util.FileReload;
 import com.intellij.openapi.actionSystem.AnAction;
+import com.intellij.openapi.actionSystem.ActionUpdateThread;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.PlatformDataKeys;
 import com.intellij.openapi.progress.ProgressIndicator;
@@ -37,7 +38,10 @@ public class ModelAction extends AnAction {
             e.getPresentation().setEnabledAndVisible(false);
         }
     }
-
+    @Override
+    public @NotNull ActionUpdateThread getActionUpdateThread() {
+        return ActionUpdateThread.BGT;
+    }
     @Override
     public void actionPerformed(@NotNull AnActionEvent e) {
         Project project = e.getProject();
